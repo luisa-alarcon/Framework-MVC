@@ -32,7 +32,7 @@ class Paginas extends Controlador{
             ];
 
             if($this->usuarioModelo->agregarUsuario($datos)){
-                redireccionar('/paginas');
+                redireccionar('/');
             }
             else{
                 die('Algo salio mal');
@@ -45,6 +45,63 @@ class Paginas extends Controlador{
 
             $this->vista('paginas/agregar', $datos);
         }
+    }
+
+
+    public function editar($id){
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $datos = [
+                'status_id' => $id,
+                'status_cod' => trim($_POST['codigo'])
+            ];
+
+            if($this->usuarioModelo->actualizarUsuario($datos)){
+                redireccionar('/');
+            }
+            else{
+                die('Algo salio mal');
+            }
+        }
+        else {
+            //esto esta en el else porque debe ejecutarse antes de que el usuario envie la informacion por post 
+            //obtener informacion de usuario desde el modelo validandolo por el id
+            $usuario = $this->usuarioModelo->obtenerUsuarioId($id);
+
+
+            $datos = [
+                'status_id' => $usuario->status_id,
+                'status_cod' => $usuario->status_cod
+            ];
+
+            $this->vista('paginas/editar', $datos);
+        }
+    }
+
+    public function borrar($id){
+
+        //obtener informacion de usuario desde el modelo validandolo por el id
+        $usuario = $this->usuarioModelo->obtenerUsuarioId($id);
+
+        $datos = [
+            'status_id' => $usuario->status_id,
+            'status_cod' => $usuario->status_cod
+        ];
+
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $datos = [
+                'status_id' => $id
+            ];
+
+            if($this->usuarioModelo->borrarUsuario($datos)){
+                redireccionar('/');
+            }
+            else{
+                die('Algo salio mal');
+            }
+        }
+        $this->vista('paginas/borrar', $datos);
     }
 
     

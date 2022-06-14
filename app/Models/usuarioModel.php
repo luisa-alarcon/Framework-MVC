@@ -29,4 +29,38 @@ class usuarioModel{
             return false;
         }
     }
+
+    public function obtenerUsuarioId($id){
+        $this->db->query("SELECT * FROM status WHERE status_id = :id");
+        $this->db->bind(':id', $id);
+
+        $fila = $this->db->registro();
+
+        return $fila;
+    }
+
+    public function actualizarUsuario($datos){
+        $this->db->query('UPDATE `status` SET `status_cod`= :status_cod WHERE status_id = :id');
+        $this->db->bind(':id', $datos['status_id']);
+        $this->db->bind(':status_cod', $datos['status_cod']);
+
+        if($this->db->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function borrarUsuario($datos){
+        $this->db->query('DELETE FROM `status` WHERE status_id = :id');
+        $this->db->bind(':id', $datos['status_id']);
+
+        if($this->db->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
