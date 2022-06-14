@@ -47,7 +47,7 @@
                         $tipo = PDO::PARAM_NULL;
                     break;
                     default:
-                        $tipo = PDO::PARAM_NULL;
+                        $tipo = PDO::PARAM_STR;
                     break;
 
                 }
