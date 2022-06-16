@@ -9,7 +9,7 @@
     */
 
     class Core{
-        protected $controladorActual = 'paginas';
+        protected $controladorActual = 'Home';
         protected $MetodoActual = 'Index';
         protected $parametros = [];
 

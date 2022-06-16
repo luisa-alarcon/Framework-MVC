@@ -1,5 +1,5 @@
 <?php require RUTA_APP . '/Views/inc/header.php' ?>
-    <a href="<?php echo RUTA_URL;?>/" class="btn btn-light"><i class="fa fa-backward">Volver</i></a>
+    <a href="<?php echo RUTA_URL;?>/paginas/inicio" class="btn btn-light"><i class="fa fa-backward">Volver</i></a>
     <div class="container">
         <h3>Editar usuarios</h3>
         <form action="<?php echo RUTA_URL;?>/paginas/editar/<?php echo $datos['status_id']?>" method="POST">

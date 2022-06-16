@@ -1,4 +1,5 @@
 <?php require RUTA_APP . '/Views/inc/header.php' ?>
+    <a href="<?php echo RUTA_URL;?>/paginas/agregar" class="btn btn-light"><i class="fa fa-backward">Agregar</i></a>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -12,8 +13,8 @@
             <tr>
                 <td><?php echo $usuario->status_id; ?></td>
                 <td><?php echo $usuario->status_cod; ?></td>
-                <td><a href="<?php RUTA_APP; ?> paginas/editar/<?php echo $usuario->status_id;?>">Editar</a></td>
-                <td><a href="<?php RUTA_APP; ?> paginas/borrar/<?php echo $usuario->status_id;?>">Eliminar</a></td>
+                <td><a href="<?php RUTA_APP; ?> editar/<?php echo $usuario->status_id;?>">Editar</a></td>
+                <td><a href="<?php RUTA_APP; ?> borrar/<?php echo $usuario->status_id;?>">Eliminar</a></td>
             </tr>
         <?php endforeach;?>
         </tbody>

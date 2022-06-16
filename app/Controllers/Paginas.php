@@ -32,7 +32,7 @@ class Paginas extends Controlador{
             ];
 
             if($this->usuarioModelo->agregarUsuario($datos)){
-                redireccionar('/');
+                redireccionar('/paginas/inicio');
             }
             else{
                 die('Algo salio mal');
