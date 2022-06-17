@@ -30,7 +30,7 @@
                 <td><?php echo $movie->status_cod; ?></td>
                 <td><?php echo $movie->category; ?></td>
                 <td><a href="<?php RUTA_APP; ?> editar/<?php echo $movie->imdb_id;?>">Editar</a></td>
-                <td><a href="<?php RUTA_APP; ?> borrar/<?php echo $movie->imdb_id;?>">Eliminar</a></td>
+                <td><a href="<?php RUTA_APP; ?> eliminar/<?php echo $movie->imdb_id;?>">Eliminar</a></td>
             </tr>
         <?php endforeach;?>
         </tbody>

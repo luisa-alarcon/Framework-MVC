@@ -67,7 +67,7 @@ class Movies extends Controlador{
         }
     }
 
-    public function actualizarUsuario($id){
+    public function editar($id){
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $datos = [
@@ -92,7 +92,7 @@ class Movies extends Controlador{
             }
         }
         else {
-            $movies = $this->usuarioModelo->obtenermovieId($id);
+            $movies = $this->usuarioModelo->obtenerMovieId($id);
             $status = $this->usuarioStatus->obtenerUsuarios();
             $datos = [
                 'imdb_id' => $movies->imdb_id ,
@@ -106,11 +106,54 @@ class Movies extends Controlador{
                 'rating' => $movies->rating,
                 'category' => $movies->category,
                 'status' => $status,
-                
-
             ];
 
             $this->vista('movies/editar', $datos);
+        }
+    }
+
+    public function eliminar($id){
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $datos = [
+                'imdb_id' => $id,
+                'title' => trim($_POST['title']),
+                'plot' => trim($_POST['plot']),
+                'author' => trim($_POST['author']),
+                'actors' => trim($_POST['actors']),
+                'country' => trim($_POST['country']),
+                'premiere' => trim($_POST['premiere']),
+                'genres' => trim($_POST['genres']),
+                'rating' => trim($_POST['rating']),
+                'status' => trim($_POST['status']),
+                'category' => trim($_POST['category'])
+            ];
+
+            if($this->usuarioModelo->eliminarMovie($datos)){
+                redireccionar('/movies/Index');
+            }
+            else{
+                die('Algo salio mal');
+            }
+        }
+        else {
+            $movies = $this->usuarioModelo->obtenerMovieId($id);
+            $status = $this->usuarioStatus->obtenerUsuarios();
+            $datos = [
+                'imdb_id' => $movies->imdb_id ,
+                'title' => $movies->title,
+                'plot' => $movies->plot,
+                'author' => $movies->author,
+                'actors' => $movies->actors,
+                'country' => $movies->country,
+                'premiere' => $movies->premiere,
+                'genres' => $movies->genres,
+                'rating' => $movies->rating,
+                'category' => $movies->category,
+                'status' => $status,
+            ];
+
+            $this->vista('movies/eliminar', $datos);
         }
     }
 

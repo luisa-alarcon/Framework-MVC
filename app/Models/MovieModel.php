@@ -19,6 +19,15 @@ class MovieModel{
         return $resultados;
     }
 
+    public function obtenerMovieId($id){
+        $this->db->query("SELECT * FROM movieseries WHERE imdb_id = :id");
+        $this->db->bind(':id', $id);
+
+        $fila = $this->db->registro();
+
+        return $fila;
+    }
+
     public function agregarMovie($datos){
         $this->db->query('INSERT INTO movieseries (imdb_id, title, plot, author, actors, country, premiere, rating, genres, status, category)
                          Values (:imdb_id, :title, :plot, :author, :actors, :country, :premiere, :rating, :genres, :status, :category)');
@@ -45,7 +54,7 @@ class MovieModel{
     }
 
     public function actualizarMovie($datos){
-        $this->db->query('UPDATE movieseries SET (title=:title, plot=:plot, author=:author, actors=:actors, country=:country, premiere=:premiere, rating=:rating, genres=:genres, status=:status, category=:category) WHERE imdb_id=:imdb_id');
+        $this->db->query('UPDATE movieseries SET title=:title, plot=:plot, author=:author, actors=:actors, country=:country, premiere=:premiere, rating=:rating, genres=:genres, status=:status, category=:category WHERE imdb_id=:imdb_id');
                          
         
         $this->db->bind(':imdb_id', $datos['imdb_id']);
@@ -62,6 +71,19 @@ class MovieModel{
 
         
 
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function eliminarMovie($datos){
+        $this->db->query('DELETE FROM movieseries  WHERE imdb_id=:imdb_id');
+                         
+        $this->db->bind(':imdb_id', $datos['imdb_id']);
+        
         if($this->db->execute()){
             return true;
         }else{
