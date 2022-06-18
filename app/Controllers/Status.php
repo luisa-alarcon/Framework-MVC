@@ -1,24 +1,24 @@
 <?php 
 
-class Paginas extends Controlador{
+class Status extends Controlador{
 
     public function __construct()
     {
         //echo 'controlador pagina cargada';
-        $this->usuarioModelo = $this->modelo('usuarioModel');
+        $this->statusModelo = $this->modelo('statusModel');
     }
 
     public function Index(){
         //Obtener los usuarios 
-        $usuarios = $this->usuarioModelo->obtenerUsuarios(); 
+        $status = $this->statusModelo->obtenerStatus(); 
 
         //pasar datos 
         $datos = [
             'Titulo' => 'Bienvenido a MVC',
-            'usuarios' => $usuarios
+            'status' => $status
         ];
 
-        $this->vista('paginas/Inicio', $datos);
+        $this->vista('status/Inicio', $datos);
     }
 
     public function agregar(){
@@ -31,8 +31,8 @@ class Paginas extends Controlador{
                 'status_cod' => trim($_POST['status_cod'])
             ];
 
-            if($this->usuarioModelo->agregarUsuario($datos)){
-                redireccionar('/paginas/inicio');
+            if($this->statusModelo->agregarStatus($datos)){
+                redireccionar('/status/inicio');
             }
             else{
                 die('Algo salio mal');
@@ -43,7 +43,7 @@ class Paginas extends Controlador{
                 'status_cod' => ''
             ];
 
-            $this->vista('paginas/agregar', $datos);
+            $this->vista('status/agregar', $datos);
         }
     }
 
@@ -56,8 +56,8 @@ class Paginas extends Controlador{
                 'status_cod' => trim($_POST['codigo'])
             ];
 
-            if($this->usuarioModelo->actualizarUsuario($datos)){
-                redireccionar('/');
+            if($this->statusModelo->actualizarStatus($datos)){
+                redireccionar('/status/inicio');
             }
             else{
                 die('Algo salio mal');
@@ -66,26 +66,26 @@ class Paginas extends Controlador{
         else {
             //esto esta en el else porque debe ejecutarse antes de que el usuario envie la informacion por post 
             //obtener informacion de usuario desde el modelo validandolo por el id
-            $usuario = $this->usuarioModelo->obtenerUsuarioId($id);
+            $status = $this->statusModelo->obtenerStatusId($id);
 
 
             $datos = [
-                'status_id' => $usuario->status_id,
-                'status_cod' => $usuario->status_cod
+                'status_id' => $status->status_id,
+                'status_cod' => $status->status_cod
             ];
 
-            $this->vista('paginas/editar', $datos);
+            $this->vista('status/editar', $datos);
         }
     }
 
     public function borrar($id){
 
         //obtener informacion de usuario desde el modelo validandolo por el id
-        $usuario = $this->usuarioModelo->obtenerUsuarioId($id);
+        $status = $this->statusModelo->obtenerStatusId($id);
 
         $datos = [
-            'status_id' => $usuario->status_id,
-            'status_cod' => $usuario->status_cod
+            'status_id' => $status->status_id,
+            'status_cod' => $status->status_cod
         ];
 
 
@@ -94,14 +94,14 @@ class Paginas extends Controlador{
                 'status_id' => $id
             ];
 
-            if($this->usuarioModelo->borrarUsuario($datos)){
-                redireccionar('/');
+            if($this->statusModelo->borrarStatus($datos)){
+                redireccionar('/status/inicio');
             }
             else{
                 die('Algo salio mal');
             }
         }
-        $this->vista('paginas/borrar', $datos);
+        $this->vista('status/borrar', $datos);
     }
 
     

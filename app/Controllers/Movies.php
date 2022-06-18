@@ -3,13 +3,13 @@ class Movies extends Controlador{
 
     public function __construct()
     {
-        $this->usuarioModelo = $this->modelo('MovieModel');
-        $this->usuarioStatus = $this->modelo('usuarioModel');
+        $this->movieModelo = $this->modelo('MovieModel');
+        $this->statusModelo = $this->modelo('statusModel');
     }
 
     public function Index(){
 
-        $movies = $this->usuarioModelo->obtenerMovies();
+        $movies = $this->movieModelo->obtenerMovies();
 
         $datos =[
             'movies' => $movies
@@ -39,7 +39,7 @@ class Movies extends Controlador{
                 'category' => trim($_POST['category'])
             ];
 
-            if($this->usuarioModelo->agregarMovie($datos)){
+            if($this->movieModelo->agregarMovie($datos)){
                 redireccionar('/movies/Index');
             }
             else{
@@ -47,7 +47,7 @@ class Movies extends Controlador{
             }
         }
         else {
-            $status = $this->usuarioStatus->obtenerUsuarios();
+            $status = $this->statusModelo->obtenerStatus();
             $datos = [
                 'imdb_id' => '',
                 'title' => '',
@@ -84,7 +84,7 @@ class Movies extends Controlador{
                 'category' => trim($_POST['category'])
             ];
 
-            if($this->usuarioModelo->actualizarMovie($datos)){
+            if($this->movieModelo->actualizarMovie($datos)){
                 redireccionar('/movies/Index');
             }
             else{
@@ -92,8 +92,8 @@ class Movies extends Controlador{
             }
         }
         else {
-            $movies = $this->usuarioModelo->obtenerMovieId($id);
-            $status = $this->usuarioStatus->obtenerUsuarios();
+            $movies = $this->movieModelo->obtenerMovieId($id);
+            $status = $this->statusModelo->obtenerStatus();
             $datos = [
                 'imdb_id' => $movies->imdb_id ,
                 'title' => $movies->title,
@@ -129,7 +129,7 @@ class Movies extends Controlador{
                 'category' => trim($_POST['category'])
             ];
 
-            if($this->usuarioModelo->eliminarMovie($datos)){
+            if($this->movieModelo->eliminarMovie($datos)){
                 redireccionar('/movies/Index');
             }
             else{
@@ -137,8 +137,8 @@ class Movies extends Controlador{
             }
         }
         else {
-            $movies = $this->usuarioModelo->obtenerMovieId($id);
-            $status = $this->usuarioStatus->obtenerUsuarios();
+            $movies = $this->movieModelo->obtenerMovieId($id);
+            $status = $this->statusModelo->obtenerStatus();
             $datos = [
                 'imdb_id' => $movies->imdb_id ,
                 'title' => $movies->title,

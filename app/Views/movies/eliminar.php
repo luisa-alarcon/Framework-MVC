@@ -1,5 +1,5 @@
 <?php require RUTA_APP . '/Views/inc/header.php' ?>
-    <a href="<?php echo RUTA_URL;?>/" class="btn btn-light"><i class="fa fa-backward">Volver</i></a>
+    <a href="<?php echo RUTA_URL;?>/movies/Index" class="btn btn-light"><i class="fa fa-backward">Volver</i></a>
     <div class="container">
         <h3>Editar Pelicula</h3>
         <form action="<?php echo RUTA_URL;?>/movies/eliminar/<?php echo $datos['imdb_id']?>" method="POST">

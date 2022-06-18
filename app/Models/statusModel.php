@@ -1,6 +1,6 @@
 <?php 
 
-class usuarioModel{
+class statusModel{
     //Manejador de la base de datos
     private $db;
 
@@ -9,7 +9,7 @@ class usuarioModel{
         $this->db = new Base;
     }
 
-    public function obtenerUsuarios(){
+    public function obtenerStatus(){
         $this->db->query('SELECT * FROM status');
         //la funcion registros viene de la base
         $resultados = $this->db->registros();
@@ -17,7 +17,7 @@ class usuarioModel{
         return $resultados;
     }
 
-    public function agregarUsuario($datos){
+    public function agregarStatus($datos){
         //consulta
         $this->db->query("INSERT INTO `status` (`status_cod`) VALUES (:status_cod)");
         //vincular valores
@@ -30,7 +30,7 @@ class usuarioModel{
         }
     }
 
-    public function obtenerUsuarioId($id){
+    public function obtenerStatusId($id){
         $this->db->query("SELECT * FROM status WHERE status_id = :id");
         $this->db->bind(':id', $id);
 
@@ -39,7 +39,7 @@ class usuarioModel{
         return $fila;
     }
 
-    public function actualizarUsuario($datos){
+    public function actualizarStatus($datos){
         $this->db->query('UPDATE `status` SET `status_cod`= :status_cod WHERE status_id = :id');
         $this->db->bind(':id', $datos['status_id']);
         $this->db->bind(':status_cod', $datos['status_cod']);
@@ -52,7 +52,7 @@ class usuarioModel{
         }
     }
 
-    public function borrarUsuario($datos){
+    public function borrarStatus($datos){
         $this->db->query('DELETE FROM `status` WHERE status_id = :id');
         $this->db->bind(':id', $datos['status_id']);
 

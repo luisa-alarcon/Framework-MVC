@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo RUTA_URL;?>/paginas/Inicio">Status</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo RUTA_URL;?>/status/Inicio">Status</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo RUTA_URL;?>/movies/Index">Movies</a>
